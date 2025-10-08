@@ -31,6 +31,8 @@
   
 ### ビルド
 - サンプルのフォルダをVSCodeで開く
+  - 1回目はツールとSDKのインストールが行われるので時間を要する
+  - VSCodeの右下のポップアップでインストール状況が表示されるので，表示がなくなるまで待つ
 - 左のペインから Raspberry Pi Pico 拡張 を選択
 - Configure CMake を選択
 - Compile Project を選択
