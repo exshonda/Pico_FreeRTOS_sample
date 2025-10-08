@@ -85,9 +85,8 @@
 ## 基本
 
 - コアの識別
-  - portGET_CORE_ID() : 0オリジン
-  - vTaskCoreAffinitySet() : 1オリジン
-  
+  - 0オリジン
+
 - getchar()
   - 内部でブロック（ビジーループ）．
   - タイムアウト付きを使う．

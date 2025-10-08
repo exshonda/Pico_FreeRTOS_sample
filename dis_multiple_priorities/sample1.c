@@ -59,7 +59,7 @@ TaskHandle_t otask_h_handle;
 int 
 GetCoreID(void) 
 {
-    return portGET_CORE_ID() + 1;
+    return portGET_CORE_ID();
 }
 
 char message;
@@ -92,7 +92,7 @@ btask1_m(__unused void *params)
 
         if (c == 'w') {
             printf("btask_m : Set otask_h to core %d\n", GetCoreID());
-            vTaskCoreAffinitySet(otask_h_handle, GetCoreID());
+            vTaskCoreAffinitySet(otask_h_handle, 1 << GetCoreID());
             vTaskResume(otask_h_handle);
         }
         else if (c == 's') {
@@ -112,12 +112,12 @@ btask1_m(__unused void *params)
             cancel_repeating_timer(&rtimer);
         }
         else if (c == '1') {
-            printf("btask_m : Set Core Affinity to Core 1\n");
-            vTaskCoreAffinitySet(NULL, 1);
+            printf("btask_m : Set Core Affinity to Core 0\n");
+            vTaskCoreAffinitySet(NULL, 1 << 0);
         }        
          else if (c == '2') {
-            printf("btask_m : Set Core Affinity to Core 2\n");
-            vTaskCoreAffinitySet(NULL, 2);
+            printf("btask_m : Set Core Affinity to Core 1\n");
+            vTaskCoreAffinitySet(NULL, 1 << 1);
         }       
         busy_wait_ms(500);
         //sleep_ms(500);
