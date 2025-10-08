@@ -7,7 +7,8 @@
   - SDK提供サンプルをマルチコアコア専用としたもの
 - smp_schedule
   - SMPスケジューリングを客員するサンプル
-
+- dis_multiple_priorities
+  - configRUN_MULTIPLE_PRIORITIES を 0 とした際の挙動の確認
 
 ## 開発環境
 
@@ -39,6 +40,10 @@
 - Debug Projectを選択
 - 実行ボタンを押して実行
 
+
+## 情報
+- [FreeRTOSのSMP拡張仕様](https://www.freertos.org/Documentation/02-Kernel/02-Kernel-features/13-Symmetric-multiprocessing-introduction)
+
 ## サンプル詳細
 
 ### smp_schedule
@@ -62,6 +67,21 @@
     - 'c' : 500msのタイマー割込みハンドラをコア1で起動
     - 'C' : 500msのタイマー割込みハンドラのキャンセル
 
+### dis_multiple_priorities
+- configRUN_MULTIPLE_PRIORITIES の確認用
+  - コンフィギュレーション
+    - configRUN_MULTIPLE_PRIORITIES を 0 としている．
+  - タスク  
+    - btask1_m : MID  : コア固定なし
+      - ビジーループ実行毎に実行するコアを確認
+    - btask2_m : MID  : コア固定なし
+    - otask_h : HIGH : コア0固定
+      - 起動後にsuspend
+      - resumeされると実行コアを出力して数秒動作した後にsuspend
+  - コマンド
+    - 'w' : btask1_mからotask_hを起動
+
+
 ## 基本
 
 - コアの識別
@@ -76,3 +96,6 @@
   - 他のコアのタスク実行も止める．
     - 他のコアの優先度が高い場合も停止させる．
     - 割込みは禁止しない
+    
+- configRUN_MULTIPLE_PRIORITIES
+  - 0 にする場合は，vTaskPreemptionDisable は無効にする必要がある
