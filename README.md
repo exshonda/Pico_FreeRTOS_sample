@@ -61,7 +61,7 @@
       - 起動後にsuspend
       - resumeされると実行コアを出力して数秒動作した後にsuspend
   - コマンド
-    - 'w' : btask_mからotask_hを起動
+    - 'w' : btask_mからotask_hを起動し同じコアに固定する
     - 'd' : vTaskPreemptionDisable をbask_l/btask_mで呼び出し
     - 'e' : vTaskPreemptionDisable をbask_l/btask_mで呼び出し
     - 's' : vTaskSuspendAll をbtask_mで呼び出し
